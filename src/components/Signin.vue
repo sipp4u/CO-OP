@@ -1,15 +1,12 @@
 <template>
   <div class="hello">
-    <h1>CO-OP</h1>
-    <form action="appel api">
-      <label for="fname">First Name</label>
-      <input type="text" id="fname" name="firstname" placeholder="Your name..">
-
+    <h1>CO-OP Sign in</h1>
+    <form @submit.prevent="signin()">
       <label for="email">Email</label>
-      <input type="text" id="email" name="email" placeholder="Your email ..">
+      <input type="text" v-model="members.email" id="email" name="email" placeholder="Your email ..">
 
       <label for="password">Password</label>
-      <input type="password" id="password" name="password" placeholder="Your password..">
+      <input type="password" v-model="members.password" id="password" name="password" placeholder="Your password..">
 
       <input type="submit" value="Submit">
     </form>
@@ -17,11 +14,29 @@
 </template>
 
 <script>
+  import confApi from '../configApi'
 export default {
   name: 'Signin',
   data () {
     return {
-      msg: 'Welcome to Co-OP App'
+      members:{email: '',
+        password:''
+      }
+
+    }
+  },
+
+  methods: {
+    signin(){
+      confApi.post('/members/signin', this.members).then((response)=> {
+     console.log(response.data)
+        //mettre dans le local storage
+        /*
+        this.$store.dispatch('nom de la methode', this.members)
+         */
+      }).catch((error)=> {
+        console.log(error);
+      })
     }
   }
 }
