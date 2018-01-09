@@ -1,47 +1,33 @@
 <template>
   <div class="hello">
-    <h1>CO-OP Sign in</h1>
+    <h1>Welcome</h1>
     <form @submit.prevent="signin()">
-      <label for="email">Email</label>
-      <input type="email" v-model="members.email" id="email" name="email" placeholder="Your email .." required>
-
-      <label for="password">Password</label>
-      <input type="password" v-model="members.password" id="password" name="password" placeholder="Your password.." required>
-
-      <input type="submit" value="Submit">
+      <input type="submit" value="SignIn">
     </form>
+
+    <form @submit.prevent="signup()">
+      <input type="submit" value="SignUp">
+    </form>
+
   </div>
 </template>
 
 <script>
   import confApi from '../configApi'
-export default {
-  name: 'Signin',
-  data () {
-    return {
-      members:{email: '',
-        password:''
-      }
+  import router from '../router'
 
-    }
-  },
-
-  methods: {
-    signin(){
-      confApi.post('/members/signin', this.members).then((response)=> {
-        console.log(response.data)
-        //mettre dans le local storage
-        /*
-        this.$store.dispatch('nom de la methode', this.members)
-         */
-      }).catch((error)=> {
-          if(error.response.status === 400){
-            alert("Mauvais Login ou Mot de passe");
-          }
-      })
+  export default {
+    name: 'Home',
+    methods: {
+      signin(){
+        router.push('Signin')
+      },
+      signup(){
+        router.push('Signup')
+      },
     }
   }
-}
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
@@ -60,7 +46,7 @@ li {
 a {
   color: #42b983;
 }
-input[type=text], input[type=email], select {
+input[type=text], select {
   width: 100%;
   padding: 12px 20px;
   margin: 8px 0;

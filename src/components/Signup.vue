@@ -3,13 +3,13 @@
     <h1>CO-OP Sign up</h1>
     <form @submit.prevent="signin()">
       <label for="fname">Full Name</label>
-      <input type="text" v-model="members.fullname" id="fname" name="firstname" placeholder="Your name..">
+      <input type="text" v-model="members.fullname" id="fname" name="firstname" placeholder="Your name.." required>
 
       <label for="email">Email</label>
-      <input type="text" v-model="members.email" id="email" name="email" placeholder="Your email ..">
+      <input type="email" v-model="members.email" id="email" name="email" placeholder="Your email .." required>
 
       <label for="password">Password</label>
-      <input type="password" v-model="members.password" id="password" name="password" placeholder="Your password..">
+      <input type="password" v-model="members.password" id="password" name="password" placeholder="Your password.." required>
 
       <input type="submit" value="Submit">
     </form>
@@ -35,7 +35,9 @@
         confApi.post('/members', this.members).then((response)=> {
           console.log(response.data)
         }).catch((error)=> {
-          console.log(error);
+          if(error.response.status === 422){
+            alert("Adresse E-mail déjà utilisé");
+          }
         })
       }
     }
@@ -58,7 +60,7 @@
   a {
     color: #42b983;
   }
-  input[type=text], select {
+  input[type=text], input[type=email], select {
     width: 100%;
     padding: 12px 20px;
     margin: 8px 0;

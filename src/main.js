@@ -3,9 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import interceptors from './plugins/Interceptors'
 
 Vue.config.productionTip = false
-
+Vue.use(interceptors)
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
