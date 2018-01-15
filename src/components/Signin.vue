@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>CO-OP Sign in</h1>
-    <form @submit.prevent="signin()">
+      <form @submit.prevent="signin()">
       <label for="email">Email</label>
       <input type="email" v-model="members.email" id="email" name="email" placeholder="Your email .." required>
 
@@ -15,6 +15,7 @@
 
 <script>
   import confApi from '../configApi'
+  import router from '../router'
 export default {
   name: 'Signin',
   data () {
@@ -31,6 +32,7 @@ export default {
       confApi.post('/members/signin', this.members).then((response)=> {
         localStorage.setItem("isConnected", "Connect")
         localStorage.setItem("token", response.data.token)
+        router.push("PageCo")
       })
     }
   }

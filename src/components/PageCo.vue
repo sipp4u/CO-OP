@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
     PAGE CO
+    <button v-on:click="profile()"> Profile </button>
   </div>
 </template>
 
@@ -8,12 +9,10 @@
   import confApi from '../configApi'
   export default {
     name: 'PageCo',
-    data () {
-
-    },
-
     methods: {
+      profile(){
 
+      }
     }
   }
 </script>
@@ -34,7 +33,7 @@
   a {
     color: #42b983;
   }
-  
+
 
   div {
     border-radius: 5px;
