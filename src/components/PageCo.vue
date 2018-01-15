@@ -1,19 +1,18 @@
 <template>
   <div class="hello">
     PAGE CO
+    <button v-on:click="profile()"> Profile </button>
   </div>
 </template>
 
 <script>
   import confApi from '../configApi'
   export default {
-    name: 'Signin',
-    data () {
-
-    },
-
+    name: 'PageCo',
     methods: {
-
+      profile(){
+        
+      }
     }
   }
 </script>
