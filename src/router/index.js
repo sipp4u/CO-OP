@@ -3,6 +3,7 @@ import Router from 'vue-router'
 import Signin from '@/components/Signin'
 import Signup from '@/components/Signup'
 import Home from '@/components/Home'
+import PageCo from '@/components/PageCo'
 
 Vue.use(Router)
 
@@ -26,7 +27,7 @@ export default new Router({
     {
       path: '/pageCo',
       name: 'PageCo',
-      component: pageCo
+      component: PageCo
     }
   ],
   beforeEach : ((to, from, next) => {
