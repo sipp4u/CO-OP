@@ -28,5 +28,13 @@ export default new Router({
       name: 'PageCo',
       component: pageCo
     }
-  ]
+  ],
+  beforeEach : ((to, from, next) => {
+    if (to.name == 'PageCo' && localStorage.getItem("isConnected") != "Connect") {
+      router.next('Signin')
+    }
+    if(to.name == 'Signin' && localStorage.getItem("isConnected") === "Connect" ){
+      router.push('PageCo')
+    }
+  })
 })

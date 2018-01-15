@@ -6,11 +6,13 @@ import router from './router'
 import interceptors from './plugins/Interceptors'
 
 Vue.config.productionTip = false
-Vue.use(interceptors)
 /* eslint-disable no-new */
+Vue.use(interceptors)
+
 new Vue({
   el: '#app',
   router,
+  interceptors,
   template: '<App/>',
   components: { App }
 })

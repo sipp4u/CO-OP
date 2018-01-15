@@ -29,15 +29,8 @@ export default {
   methods: {
     signin(){
       confApi.post('/members/signin', this.members).then((response)=> {
-        console.log(response.data)
-        //mettre dans le local storage
-        /*
-        this.$store.dispatch('nom de la methode', this.members)
-         */
-      }).catch((error)=> {
-          if(error.response.status === 400){
-            alert("Mauvais Login ou Mot de passe");
-          }
+        localStorage.setItem("isConnected", "Connect")
+        localStorage.setItem("token", response.data.token)
       })
     }
   }
