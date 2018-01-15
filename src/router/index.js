@@ -22,6 +22,11 @@ export default new Router({
       path: '/',
       name: 'Home',
       component: Home
+    },
+    {
+      path: '/pageCo',
+      name: 'PageCo',
+      component: pageCo
     }
   ],
   beforeEach : ((to, from, next) => {
