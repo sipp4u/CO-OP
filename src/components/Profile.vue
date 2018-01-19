@@ -1,20 +1,35 @@
 <template>
-  <div class="hello">
-    PAGE CO
-    <button v-on:click="profile()"> Profile </button>
+  <div>
+    <div class="hello">
+      Profile
+    </div>
+
+    <div class="profile">
+      <img src="http://lorempixel.com/400/400" />
+      <li v-for="value in profile">
+       {{ value }}
+      </li>
+    </div>
   </div>
 </template>
 
 <script>
   import confApi from '../configApi'
-  import router from '../router'
-  
   export default {
-    name: 'PageCo',
-    methods: {
-      profile(){
-        router.push('Profile')
+    name: 'Profile',
+    data(){
+      return {
+        profile :{fullname : '',
+        email : ''}
       }
+    },
+    created(){
+      confApi.get('/members/'+localStorage.getItem("id")+"/signedin").then((response)=> {
+        this.profile.fullname = response.data.fullname
+        this.profile.email = response.data.email
+      })
+    },
+    methods: {
     }
   }
 </script>
@@ -74,4 +89,17 @@
     background-color: #f2f2f2;
     padding: 20px;
   }
+
+  .profile{
+    text-align: center;
+  }
+
+  .profile img{
+    width : 100px;
+  }
+
+  .profile li {
+    display : block;
+  }
+
 </style>

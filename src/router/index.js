@@ -4,10 +4,11 @@ import Signin from '@/components/Signin'
 import Signup from '@/components/Signup'
 import Home from '@/components/Home'
 import PageCo from '@/components/PageCo'
+import Profile from '@/components/Profile'
 
 Vue.use(Router)
 
-export default new Router({
+const router =  new Router({
   routes: [
     {
       path: '/signin',
@@ -28,14 +29,25 @@ export default new Router({
       path: '/pageCo',
       name: 'PageCo',
       component: PageCo
+    },
+    {
+      path: '/profile',
+      name: 'Profile',
+      component: Profile
     }
-  ],
-  beforeEach : ((to, from, next) => {
-    if (to.name == 'PageCo' && localStorage.getItem("isConnected") != "Connect") {
-      router.next('Signin')
-    }
-    if(to.name == 'Signin' && localStorage.getItem("isConnected") === "Connect" ){
-      router.push('PageCo')
-    }
-  })
+  ]
 })
+
+  router.beforeEach((to, from, next) => {
+    if (to.name == 'PageCo' && localStorage.getItem("isConnected") != "Connect") {
+      next({name: 'Signin' })
+    }
+    else if (to.name == 'Signin' && localStorage.getItem("isConnected") == "Connect" ){
+      next({name: 'PageCo' })
+    }
+    else{
+     next()
+   }
+})
+
+export default router
