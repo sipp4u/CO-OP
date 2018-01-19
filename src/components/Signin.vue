@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>CO-OP Sign in</h1>
-    <form @submit.prevent="signin()">
+      <form @submit.prevent="signin()">
       <label for="email">Email</label>
       <input type="email" v-model="members.email" id="email" name="email" placeholder="Your email .." required>
 

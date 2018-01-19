@@ -14,6 +14,7 @@
   <members :members="members">
 
   </members>
+
   </div>
 </template>
 
@@ -104,6 +105,7 @@
     align-items: center;
     justify-content: center;
   }
+
   div {
     border-radius: 5px;
     background-color: #f2f2f2;
