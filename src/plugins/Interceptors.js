@@ -8,11 +8,11 @@ const MyPlugin = {
          // Add a request interceptor
     confApi.interceptors.request.use( (config) => {
         // Do something before request is sent
-        if(localStorage.getItem('isConnected') == 'Connect'){
+        if(sessionStorage.getItem('isConnected') == 'Connect'){
           if(!config.params){
             config.params = {}
           }
-          config.params.token = localStorage.getItem('token')
+          config.params.token = sessionStorage.getItem('token')
         }
         return config;
       }, function (error) {

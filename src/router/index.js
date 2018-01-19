@@ -39,10 +39,10 @@ const router =  new Router({
 })
 
   router.beforeEach((to, from, next) => {
-    if (to.name == 'PageCo' && localStorage.getItem("isConnected") != "Connect") {
+    if (to.name == 'PageCo' && sessionStorage.getItem("isConnected") != "Connect") {
       next({name: 'Signin' })
     }
-    else if (to.name == 'Signin' && localStorage.getItem("isConnected") == "Connect" ){
+    else if (to.name == 'Signin' && sessionStorage.getItem("isConnected") == "Connect" ){
       next({name: 'PageCo' })
     }
     else{

@@ -24,7 +24,7 @@
       }
     },
     created(){
-      confApi.get('/members/'+localStorage.getItem("id")+"/signedin").then((response)=> {
+      confApi.get('/members/'+sessionStorage.getItem("id")+"/signedin").then((response)=> {
         this.profile.fullname = response.data.fullname
         this.profile.email = response.data.email
       })
