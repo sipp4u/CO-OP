@@ -12,7 +12,7 @@ const MyPlugin = {
           if(!config.params){
             config.params = {}
           }
-          config.params.token = localStorage.getitem('token')
+          config.params.token = localStorage.getItem('token');
         }
         //on verifie connecté
         //si y'a pas de param on vide
