@@ -26,12 +26,12 @@ export default {
 
     }
   },
-
   methods: {
     signin(){
       confApi.post('/members/signin', this.members).then((response)=> {
-        localStorage.setItem("isConnected", "Connect")
-        localStorage.setItem("token", response.data.token)
+        sessionStorage.setItem("isConnected", "Connect")
+        sessionStorage.setItem("token", response.data.token)
+        sessionStorage.setItem("id", response.data._id)
         router.push("PageCo")
       })
     }

@@ -43,11 +43,9 @@
 
     },
     methods: {
-      /**
       profile(){
-
+        router.push('Profile')
       },
-       **/
       logOut(){
         console.log('ok')
         confApi.delete('members/signout')
@@ -55,7 +53,9 @@
           console.log(response);
           alert('Vous etes deconnecté');
             router.push({name: 'Home'})
+            sessionStorage.clear()
         })
+
       }
     }
   }

@@ -8,15 +8,12 @@ const MyPlugin = {
          // Add a request interceptor
     confApi.interceptors.request.use( (config) => {
         // Do something before request is sent
-        if(localStorage.getItem('isConnected') == 'Connect'){
+        if(sessionStorage.getItem('isConnected') == 'Connect'){
           if(!config.params){
             config.params = {}
           }
-          config.params.token = localStorage.getItem('token');
+          config.params.token = sessionStorage.getItem('token')
         }
-        //on verifie connecté
-        //si y'a pas de param on vide
-        //on mets en params le token
         return config;
       }, function (error) {
         // Do something with request error
@@ -29,9 +26,9 @@ const MyPlugin = {
         return response;
       }, function (error) {
         // Do something with response error
-        if(error.response.status === 400){
-          alert("Mauvais Login ou Mot de passe");
-        }
+        // if(error.response.status === 400){
+        //   alert("Mauvais Login ou Mot de passe");
+        // }
         return Promise.reject(error);
       });
 
