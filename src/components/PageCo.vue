@@ -11,9 +11,14 @@
 
 
   </div>
-  <members :members="members">
+
+  <members :members="members" class="members">
 
   </members>
+
+  <channels :channels="channels" class ="channels">
+
+  </channels>
 
   </div>
 </template>
@@ -22,24 +27,33 @@
   import confApi from '../configApi'
   import router from '../router'
   import Members from './Members'
+  import Channels from './Channels'
   export default {
 
     name: 'PageCo',
     components: {
-      Members
+      Members,
+      Channels
     },
     data (){
       return {
-        members: []
+        members: [],
+        channels: []
       }
     },
     created() {
       confApi.get('/members').then((response) =>{
-        console.log(response)
         this.members= response.data;
       }).catch((error)=> {
         console.log(error);
       })
+
+      confApi.get('/channels').then((response) =>{
+        this.channels= response.data;
+      }).catch((error)=> {
+        console.log(error);
+      })
+
 
     },
     methods: {
@@ -111,4 +125,8 @@
     background-color: #f2f2f2;
     padding: 20px;
   }
+
+
+
+
 </style>
