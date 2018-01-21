@@ -1,24 +1,21 @@
 <template>
   <div>
   <div class="hello">
-    PAGE CO
-
-    <h1>PAGE CO</h1>
     <div class="profLogout">
       <button v-on:click="profile()"> Profile </button>
       <button v-on:click="logOut()">Se deconnecter</button>
     </div>
-
-
   </div>
 
-  <members :members="members" class="members">
+  <div class="home">
+    <channels :channels="channels" class ="channels">
 
-  </members>
+    </channels>
 
-  <channels :channels="channels" class ="channels">
+    <members :members="members" class="members">
 
-  </channels>
+    </members>
+  </div>
 
   </div>
 </template>
@@ -100,6 +97,7 @@
     align-items: center;
     justify-content: flex-end;
   }
+
   button {
     margin-left: 2px;
     background-color: cornflowerblue; /* Green */
@@ -110,7 +108,6 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-
   }
   .hello{
     display: flex;
@@ -118,12 +115,24 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    padding-bottom: 20px;
   }
 
   div {
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
+  }
+
+  .home{
+    display: flex;
+  }
+
+  .channels{
+    width : 100%;
+  }
+
+  .members{
+    width :200px;
   }
 
 

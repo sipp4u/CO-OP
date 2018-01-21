@@ -1,28 +1,36 @@
 <template>
   <div>
-    <h1>Channels</h1>
+    <div class="all">
+        <div class="menu">
+          <h1>Menu</h1>
+          <div  v-for="c in channels">
+            <!-- Le if ne marche pas -->
+            <p v-if="c == undefined">Sorry, there is no channels here !</p>
+            <p v-on:click="showChannel(c)"  v-else> {{c.label}} <button v-on:click="deleteChannel(c)"> Delete channel </button></p>
+          </div>
+          <button v-on:click="showModal()">Create Channel</button>
+        </div>
 
-    <div  v-for="c in channels">
-      <!-- Le if ne marche pas -->
-      <p v-if="c == undefined">Sorry, there is no channels here !</p>
-      <p v-on:click="showChannel(c)"  v-else> {{c.label}} <button v-on:click="deleteChannel(c)"> Delete channel </button></p>
+        <channelsChat :channelsChat="channelsChat" class ="channelsChat">
+
+        </channelsChat>
+
     </div>
 
-    <form @submit.prevent="createChannel()">
-      <label for="label">Label</label>
-      <input type="text" v-model="created.label" id="label" name="label" placeholder="Channel name..." required>
+      <div  v-if="isDisplay" class="modal">
+        <div class="modalWindow">
+          <form @submit.prevent="createChannel()">
+            <label for="label">Label</label>
+            <input type="text" v-model="created.label" id="label" name="label" placeholder="Channel name..." required>
 
-      <label for="topic">Topic</label>
-      <input type="text" v-model="created.topic" id="topic" name="topic" placeholder="Channel topic..." required>
+            <label for="topic">Topic</label>
+            <input type="text" v-model="created.topic" id="topic" name="topic" placeholder="Channel topic..." required>
 
-      <input type="submit" value="Submit">
-    </form>
-
-
-    <channelsChat :channelsChat="channelsChat" class ="channelsChat">
-
-    </channelsChat>
-
+            <input type="submit" value="Submit">
+          </form>
+          <button v-on:click="hideModal()" class="hide">Hide</button>
+        </div>
+      </div>
   </div>
 
 </template>
@@ -45,7 +53,8 @@
         },
         channelsChat : {
           info: [], posts: []
-        }
+        },
+        isDisplay: false
       }
     },
     methods:{
@@ -70,10 +79,57 @@
           })
         })
         return this.channelsChat
+      },
+      showModal(){
+        this.isDisplay = true;
+      },
+      hideModal(){
+        this.isDisplay = false;
       }
     }
   }
 </script>
-<style>
+<style  scoped>
+
+  .all{
+    display: flex;
+  }
+
+  .menu{
+    width : 200px;
+    background-color: lightgrey;
+  }
+
+  .channelsChat{
+    width : 100%;
+    text-align: center;
+    align-self: flex-start;
+  }
+
+  .modal{
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+    padding-top : 150px;
+  }
+
+  .modalWindow{
+    background-color: white;
+    width : 50%;
+    margin :auto;
+    padding : 50px;
+  }
+
+  .hide{
+    position: absolute;
+    top : 0;
+    right : 0;
+  }
 
 </style>
