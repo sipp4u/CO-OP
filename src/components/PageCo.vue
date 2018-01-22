@@ -1,6 +1,12 @@
 <template>
   <div>
   <div class="hello">
+    <div classe="header">
+      <div classe="img">
+        <img src="../images/co-op.jpg" alt="CO-OP">
+      </div>
+    </div>
+
     <div class="profLogout">
       <button v-on:click="profile()"> Profile </button>
       <button v-on:click="logOut()">Se deconnecter</button>
@@ -120,7 +126,8 @@
 
   div {
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: white;
+    padding: 20px;
   }
 
   .home{
