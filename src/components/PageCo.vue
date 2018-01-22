@@ -1,19 +1,21 @@
 <template>
   <div>
   <div class="hello">
-    PAGE CO
-
-    <h1>PAGE CO</h1>
     <div class="profLogout">
       <button v-on:click="profile()"> Profile </button>
       <button v-on:click="logOut()">Se deconnecter</button>
     </div>
-
-
   </div>
-  <members :members="members">
 
-  </members>
+  <div class="home">
+    <channels :channels="channels" class ="channels">
+
+    </channels>
+
+    <members :members="members" class="members">
+
+    </members>
+  </div>
 
   </div>
 </template>
@@ -22,24 +24,33 @@
   import confApi from '../configApi'
   import router from '../router'
   import Members from './Members'
+  import Channels from './Channels'
   export default {
 
     name: 'PageCo',
     components: {
-      Members
+      Members,
+      Channels
     },
     data (){
       return {
-        members: []
+        members: [],
+        channels: []
       }
     },
     created() {
       confApi.get('/members').then((response) =>{
-        console.log(response)
         this.members= response.data;
       }).catch((error)=> {
         console.log(error);
       })
+
+      confApi.get('/channels').then((response) =>{
+        this.channels= response.data;
+      }).catch((error)=> {
+        console.log(error);
+      })
+
 
     },
     methods: {
@@ -86,6 +97,7 @@
     align-items: center;
     justify-content: flex-end;
   }
+
   button {
     margin-left: 2px;
     background-color: cornflowerblue; /* Green */
@@ -96,7 +108,6 @@
     text-decoration: none;
     display: inline-block;
     font-size: 16px;
-
   }
   .hello{
     display: flex;
@@ -104,11 +115,27 @@
     width: 100%;
     align-items: center;
     justify-content: center;
+    padding-bottom: 20px;
   }
 
   div {
     border-radius: 5px;
     background-color: #f2f2f2;
-    padding: 20px;
   }
+
+  .home{
+    display: flex;
+  }
+
+  .channels{
+    width : 100%;
+  }
+
+  .members{
+    width :200px;
+  }
+
+
+
+
 </style>
