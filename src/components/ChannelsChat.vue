@@ -40,7 +40,8 @@
     methods : {
       createPosts(){
         confApi.post('/channels/' + this.channelsChat.info._id + '/posts', this.post).then((response)=> {
-          router.go()
+          this.$emit('event', response.data.channel_id)
+          console.log("child")
         })
       }
     }
