@@ -41,7 +41,6 @@
       createPosts(){
         confApi.post('/channels/' + this.channelsChat.info._id + '/posts', this.post).then((response)=> {
           this.$emit('event', response.data.channel_id)
-          console.log("child")
         })
       }
     }

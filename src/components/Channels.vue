@@ -67,13 +67,12 @@
         confApi.delete('channels/'+ channel._id).then((response)=> {
           alert('You just delete ' + channel.label)
           alert('You fucked up')
-          router.go()
+          this.$emit('event')
         })
       },
       showChannel(channel_id){
         confApi.get('channels/'+ channel_id ).then((response)=> {
           this.channelsChat.info = response.data
-          console.log("test")
 
           confApi.get('channels/'+ channel_id + '/posts').then((response)=> {
             this.channelsChat.posts = response.data
