@@ -1,9 +1,12 @@
 <template>
   <div>
   <div class="hello">
-    PAGE CO
+    <div classe="header">
+      <div classe="img">
+        <img src="../images/co-op.jpg" alt="CO-OP">
+      </div>
+    </div>
 
-    <h1>PAGE CO</h1>
     <div class="profLogout">
       <button v-on:click="profile()"> Profile </button>
       <button v-on:click="logOut()">Se deconnecter</button>
@@ -108,7 +111,7 @@
 
   div {
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: white;
     padding: 20px;
   }
 </style>

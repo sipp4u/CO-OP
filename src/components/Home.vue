@@ -1,5 +1,10 @@
 <template>
   <div class="hello">
+    <div classe="header">
+      <div classe="img">
+        <img src="../images/co-op.jpg" alt="CO-OP">
+      </div>
+    </div>
     <h1>Welcome</h1>
     <form @submit.prevent="signin()">
       <input type="submit" value="SignIn">
@@ -82,7 +87,7 @@ input[type=submit]:hover {
 
 div {
   border-radius: 5px;
-  background-color: #f2f2f2;
+  background-color:white;
   padding: 20px;
 }
 </style>
