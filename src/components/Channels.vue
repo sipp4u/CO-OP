@@ -6,12 +6,12 @@
           <div  v-for="c in channels">
             <!-- Le if ne marche pas -->
             <p v-if="c == undefined">Sorry, there is no channels here !</p>
-            <p v-on:click="showChannel(c)"  v-else> {{c.label}} <button v-on:click="deleteChannel(c)"> Delete channel </button></p>
+            <p v-on:click="showChannel(c._id)" v-else> {{c.label}} <button v-on:click="deleteChannel(c)"> Delete channel </button></p>
           </div>
           <button v-on:click="showModal()">Create Channel</button>
         </div>
 
-        <channelsChat :channelsChat="channelsChat" class ="channelsChat">
+        <channelsChat :channelsChat="channelsChat" class ="channelsChat"  @event="showChannel">
 
         </channelsChat>
 
@@ -70,11 +70,12 @@
           router.go()
         })
       },
-      showChannel(channel){
-        confApi.get('channels/'+ channel._id ).then((response)=> {
+      showChannel(channel_id){
+        confApi.get('channels/'+ channel_id ).then((response)=> {
           this.channelsChat.info = response.data
+          console.log("test")
 
-          confApi.get('channels/'+ channel._id + '/posts').then((response)=> {
+          confApi.get('channels/'+ channel_id + '/posts').then((response)=> {
             this.channelsChat.posts = response.data
           })
         })
