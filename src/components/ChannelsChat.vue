@@ -8,10 +8,16 @@
     </div>
 
     <div  class="chatWindow">
-      <div v-for="c in channelsChat.posts" class='post'>
-        <p v-if="c.message == undefined">There is no Posts here...</p>
-        <p v-else> {{c.message}} </p>
+      <p v-if="(Object.keys(channelsChat.posts).length)==0">There is no Posts here...</p>
+      <div v-for="p in channelsChat.posts" class='post'>
+
+
+        <p class="message"> {{p.message}} </p>
+        <div class="btnDeleteChanel">
+          <img v-on:click="deletePost(p)" class="imgDelete" src="../images/logo_delete.png" alt="delete">
+        </div>
       </div>
+
 
       <p v-if="channelsChat.info.label == undefined"></p>
       <form v-else @submit.prevent="createPosts()">
@@ -43,6 +49,13 @@
           this.$emit('event', response.data.channel_id)
           console.log("child")
         })
+      },
+      deletePost(p){
+        confApi.delete('channels/'+ p.channel_id +/posts/+ p._id).then((response) =>{
+          this.$emit('event', p.channel_id)
+          console.log(response.data);
+          alert('Votre post est supprimé !')
+        })
       }
     }
 
@@ -52,7 +65,7 @@
 <style scoped>
 
   .post p{
-    background-color : lightgrey;
+    background-color :  #4CAF50;
     width : 80%;
     height : 30px;
     padding : 20px;
@@ -60,7 +73,10 @@
     margin-top : 20px;
     margin-bottom : 20px;
   }
+.post{
+  display: flex;
 
+}
   .textbox{
     width : 80%;
     height : 50px;
@@ -68,6 +84,12 @@
 
   .button{
     height : 50px;
+ }
+  .btnDeleteChanel{
+margin: 4% 1%;
   }
-
+  .imgDelete{
+    width: 40px ;
+    height: 40px;
+  }
 </style>

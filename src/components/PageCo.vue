@@ -106,7 +106,7 @@
 
   button {
     margin-left: 2px;
-    background-color: cornflowerblue; /* Green */
+    background-color: #4CAF50; /* Green */
     border: none;
     color: white;
     padding: 15px 32px;
@@ -119,6 +119,7 @@
     display: flex;
     flex-direction: row;
     width: 100%;
+    height: 50%;
     align-items: center;
     justify-content: center;
     padding-bottom: 20px;
@@ -132,6 +133,8 @@
 
   .home{
     display: flex;
+    background-color: 	#b3ffb3;
+
   }
 
   .channels{
@@ -140,6 +143,7 @@
 
   .members{
     width :200px;
+    background-color:	#b3ffb3;
   }
 
 
