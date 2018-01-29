@@ -2,13 +2,7 @@
   <div>
     <div class="all">
         <div class="menu">
-<<<<<<< HEAD
-          <h1>Menu</h1>
-          <div  v-for="c in channels">
-            <!-- Le if ne marche pas -->
-            <p v-if="c.length() == undefined">Sorry, there is no channels here !</p>
-            <p v-on:click="showChannel(c._id)" v-else> {{c.label}} <button v-on:click="deleteChannel(c)"> Delete channel </button></p>
-=======
+
           <h1>Channels</h1>
           <p v-if="(Object.keys(channels).length)==0">Sorry, there is no channels here !</p>
           <div v-for="c in channels">
@@ -23,7 +17,6 @@
 
               </div>
 
->>>>>>> master
           </div>
           <button v-on:click="showModal()">Create Channel</button>
         </div>
