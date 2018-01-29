@@ -14,11 +14,11 @@
   </div>
 
   <div class="home">
-    <channels :channels="channels" class ="channels">
+    <channels :channels="channels" @event='showChannels' class ="channels">
 
     </channels>
 
-    <members :members="members" class="members">
+    <members :members="members" @event='showMembers' class="members">
 
     </members>
   </div>
@@ -73,6 +73,20 @@
             sessionStorage.clear()
         })
 
+      },
+      showMembers(){
+        confApi.get('/members').then((response) =>{
+          this.members= response.data;
+        }).catch((error)=> {
+          console.log(error);
+        })
+      },
+      showChannels(){
+        confApi.get('/channels').then((response) =>{
+          this.channels= response.data;
+        }).catch((error)=> {
+          console.log(error);
+        })
       }
     }
   }

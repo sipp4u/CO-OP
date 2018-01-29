@@ -7,7 +7,7 @@
     </div>
 <div class="bloc">
     <h1>CO-OP Sign up</h1>
-    <form @submit.prevent="signin()">
+    <form @submit.prevent="signup()">
       <label for="fname">Full Name</label>
       <input type="text" v-model="members.fullname" id="fname" name="firstname" placeholder="Your name.." required>
 
@@ -25,6 +25,8 @@
 
 <script>
   import confApi from '../configApi'
+  import router from '../router'
+  
   export default {
     name: 'Signin',
     data () {
@@ -38,9 +40,14 @@
     },
 
     methods: {
-      signin(){
+      signup(){
         confApi.post('/members', this.members).then((response)=> {
-          console.log(response.data)
+          confApi.post('/members/signin', this.members).then((response)=> {
+            sessionStorage.setItem("isConnected", "Connect")
+            sessionStorage.setItem("token", response.data.token)
+            sessionStorage.setItem("id", response.data._id)
+            router.push("PageCo")
+          })
         }).catch((error)=> {
           if(error.response.status === 422){
             alert("Adresse E-mail déjà utilisé");

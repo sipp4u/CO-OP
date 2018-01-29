@@ -2,6 +2,13 @@
   <div>
     <div class="all">
         <div class="menu">
+<<<<<<< HEAD
+          <h1>Menu</h1>
+          <div  v-for="c in channels">
+            <!-- Le if ne marche pas -->
+            <p v-if="c.length() == undefined">Sorry, there is no channels here !</p>
+            <p v-on:click="showChannel(c._id)" v-else> {{c.label}} <button v-on:click="deleteChannel(c)"> Delete channel </button></p>
+=======
           <h1>Channels</h1>
           <p v-if="(Object.keys(channels).length)==0">Sorry, there is no channels here !</p>
           <div v-for="c in channels">
@@ -16,6 +23,7 @@
 
               </div>
 
+>>>>>>> master
           </div>
           <button v-on:click="showModal()">Create Channel</button>
         </div>
@@ -76,13 +84,12 @@
       deleteChannel(channel){
         confApi.delete('channels/'+ channel._id).then((response)=> {
           alert('You just delete ' + channel.label)
-          router.go()
+          this.$emit('event')
         })
       },
       showChannel(channel_id){
         confApi.get('channels/'+ channel_id ).then((response)=> {
           this.channelsChat.info = response.data
-          console.log("test")
 
           confApi.get('channels/'+ channel_id + '/posts').then((response)=> {
             this.channelsChat.posts = response.data;

@@ -2,10 +2,13 @@
   <div>
     <h1>Members</h1>
 
-    <div  v-for="(m, key, index) in members" :key="m.id">
-      <p v-if="Object.keys(members).length<0">Sorry, there is no friends here !</p>
-      <!-- regarder si on peut encore v-if m.fullname =sessionstorage fullname pour pas s'exclure soit meme mdr -->
-      <p v-else> {{m.fullname}} <button v-on:click="exclude(m)"> Exclude Membre </button></p>
+    <div  v-for="m in members">
+      <p v-if="m.fullname == undefined">Sorry, there is no friends here !</p>
+      <p v-else> {{m.fullname}}
+              <p v-if="verifMembers(m._id)">
+              <p v-else><button v-on:click="exclude(m)"> Exclude Membre </button></p>
+      </p>
+
 
     </div>
   </div>
@@ -23,8 +26,15 @@
         confApi.delete('members/'+ member._id).then((response)=> {
           alert('you exclude ' + member.fullname)
           alert('Well done NILS, you wrecked it')
-          router.go()
+          this.$emit('event')
         })
+      },
+      verifMembers(m_id){
+        if(sessionStorage.getItem('id') == m_id){
+          return true
+        }else{
+          return false
+        }
       }
     }
 
