@@ -4,7 +4,7 @@
 
     <div class="PostWindow">
         <p v-if="channelsChat.info.label == undefined">Choose your tchat</p>
-        <p v-else>Channel : {{channelsChat.info.label}} </br> Topic : {{channelsChat.info.topic}}</p>
+        <p v-else>Channel : {{channelsChat.info.label}} </br> Topic : {{channelsChat.info.topic}} </br><img v-on:click="showModalBis(channelsChat.info)" class="imgDelete" src="../images/modif.png" alt="modificattion"></p>
     </div>
 
     <div id="post" class="chatWindow">
@@ -32,6 +32,19 @@
         </div>
       </div>
 
+      <div  v-if="isDisplayBis" class="modal">
+        <div class="modalWindow">
+          <form @submit.prevent="modifChannel()">
+            <label for="label">Message</label>
+            <input type="text" v-model="editedChannel.label" id="label" name="label" placeholder="you're topic" required>
+            <input type="text" v-model="editedChannel.topic" id="label" name="label" placeholder="you're label" required>
+
+            <input type="submit" value="Submit">
+          </form>
+          <button v-on:click="hideModalBis()" class="hide">Hide</button>
+        </div>
+      </div>
+
       <p v-if="channelsChat.info.label == undefined"></p>
       <form v-else @submit.prevent="createPosts()">
         <input type="textbox" v-model="post.message" id="message" name="message" placeholder="You're message" required class="textbox">
@@ -54,9 +67,14 @@
           post:{
             message: ''
           },
-        editedPost: {},
+          editedPost: {},
+          editedChannel: {
+            label: '',
+            topic : ''
+          },
         member: "",
-        isDisplay: false
+        isDisplay: false,
+        isDisplayBis: false
       }
     },
     methods :{
@@ -68,19 +86,22 @@
       deletePost(p){
         confApi.delete('channels/'+ p.channel_id +/posts/+ p._id).then((response) =>{
           this.$emit('event', p.channel_id)
-          console.log(response.data);
-          alert('Votre post est supprimé !')
+          alert('You re post is delete !')
         })
       },
       modifPost(){
         confApi.put('channels/'+ this.editedPost.channel_id +/posts/+ this.editedPost._id,  this.editedPost).then((response) =>{
-          console.log(response.data)
           alert('youre post has changed')
           this.editedPost = {};
           this.hideModal();
-
         })
-
+      },
+      modifChannel(){
+          confApi.put('channels/'+ this.editedChannel._id, this.editedChannel).then((response) =>{
+            alert('youre channel has changed')
+            this.editedChannel = {};
+            this.hideModalBis();
+          })
         },
       showModal(p){
         this.isDisplay = true;
@@ -89,6 +110,13 @@
       hideModal(){
         this.isDisplay = false;
       },
+      showModalBis(p){
+        this.isDisplayBis = true;
+        this.editedChannel = p;
+      },
+      hideModalBis(){
+        this.isDisplayBis = false;
+      }
     }
 
   }
