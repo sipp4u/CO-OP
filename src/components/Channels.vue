@@ -61,9 +61,10 @@
           topic:''
         },
         channelsChat : {
-          info: [], posts: []
+          info: [], posts: [], member: []
         },
         isDisplay: false
+
       }
     },
     methods:{
@@ -84,9 +85,23 @@
           console.log("test")
 
           confApi.get('channels/'+ channel_id + '/posts').then((response)=> {
-            this.channelsChat.posts = response.data
+            this.channelsChat.posts = response.data;
+
+            confApi.get('/members/'+ response.data.member_id + '/signedin').then((response)=>{
+
+              this.channelsChat.member = response.data.fullname;
+              var post =document.getElementById("post");
+              var lastPost =post.lastChild(-1);
+              console.log(lastPost)
+              lastPost.style.backgroundColor = "blue"
+
+              console.log(response.data)
+
+            })
+
           })
         })
+        console.log( this.channelsChat)
         return this.channelsChat
       },
       showModal(){

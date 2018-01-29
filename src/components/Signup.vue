@@ -1,5 +1,11 @@
 <template>
   <div class="hello">
+    <div classe="header">
+      <div classe="img">
+        <img src="../images/co-op.jpg" alt="CO-OP">
+      </div>
+    </div>
+<div class="bloc">
     <h1>CO-OP Sign up</h1>
     <form @submit.prevent="signin()">
       <label for="fname">Full Name</label>
@@ -13,6 +19,7 @@
 
       <input type="submit" value="Submit">
     </form>
+</div>
   </div>
 </template>
 
@@ -96,7 +103,11 @@
 
   div {
     border-radius: 5px;
-    background-color: #f2f2f2;
+    background-color: white;
     padding: 20px;
+  }
+  .bloc{
+    background-color: #f2f2f2;
+
   }
 </style>
