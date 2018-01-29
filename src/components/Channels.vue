@@ -5,7 +5,7 @@
           <h1>Menu</h1>
           <div  v-for="c in channels">
             <!-- Le if ne marche pas -->
-            <p v-if="c == undefined">Sorry, there is no channels here !</p>
+            <p v-if="c.length() == undefined">Sorry, there is no channels here !</p>
             <p v-on:click="showChannel(c._id)" v-else> {{c.label}} <button v-on:click="deleteChannel(c)"> Delete channel </button></p>
           </div>
           <button v-on:click="showModal()">Create Channel</button>
