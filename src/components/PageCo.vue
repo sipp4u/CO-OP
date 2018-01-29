@@ -64,11 +64,10 @@
         router.push('Profile')
       },
       logOut(){
-        console.log('ok')
         confApi.delete('members/signout')
           .then((response)=> {
           console.log(response);
-          alert('Vous etes deconnecté');
+          alert("You're disconnect");
             router.push({name: 'Home'})
             sessionStorage.clear()
         })

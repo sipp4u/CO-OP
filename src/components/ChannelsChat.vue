@@ -154,7 +154,7 @@
     height : 50px;
  }
   .btnDeleteChanel{
-margin: 4% 1%;
+margin: 1% 1%;
   }
   .imgDelete{
     width: 40px ;

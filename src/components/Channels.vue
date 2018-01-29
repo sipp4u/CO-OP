@@ -89,7 +89,6 @@
 
           })
         })
-        console.log( this.channelsChat)
         return this.channelsChat
       },
       showModal(){
@@ -100,7 +99,7 @@
       },
       deletePost(p){
         confApi.delete('channels/'+ p.channel_id +/posts/+ p._id).then((response) =>{
-          alert('Votre post est supprimer')
+          alert("You're post is deleted")
         })
       }
     }

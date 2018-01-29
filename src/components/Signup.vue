@@ -26,7 +26,7 @@
 <script>
   import confApi from '../configApi'
   import router from '../router'
-  
+
   export default {
     name: 'Signin',
     data () {
@@ -50,7 +50,7 @@
           })
         }).catch((error)=> {
           if(error.response.status === 422){
-            alert("Adresse E-mail déjà utilisé");
+            alert("E-mail are already use");
           }
         })
       }
