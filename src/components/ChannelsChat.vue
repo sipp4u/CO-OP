@@ -11,7 +11,7 @@
       <p v-if="(Object.keys(channelsChat.posts).length)==0">There is no Posts here...</p>
       <div  v-for="p in channelsChat.posts" class='post'>
 
-        <div id="msg"> {{member}}</div>
+        <div id="msg"> {{memberOfPost(p)}}</div>
         <p  class="message"> {{p.message}} </p>
         <div class="btnDeleteChanel">
           <img v-on:click="deletePost(p)" class="imgDelete" src="../images/logo_delete.png" alt="delete">
@@ -61,7 +61,7 @@
 
   export default {
     name: 'channelsChat',
-    props: ['channelsChat'],
+    props: ['channelsChat','members'],
     data () {
       return {
           post:{
@@ -72,12 +72,20 @@
             label: '',
             topic : ''
           },
-        member: "",
         isDisplay: false,
         isDisplayBis: false
       }
     },
     methods :{
+      memberOfPost(p){
+        for(var i = 0; i< this.members.length; i++){
+          if(this.members[i]._id == p.member_id){
+
+            return this.members[i].fullname;
+          }
+        }
+
+      },
       createPosts(){
         confApi.post('/channels/' + this.channelsChat.info._id + '/posts', this.post).then((response)=> {
           this.$emit('event', response.data.channel_id)

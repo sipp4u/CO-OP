@@ -14,7 +14,7 @@
   </div>
 
   <div class="home">
-    <channels :channels="channels" @event='showChannels' class ="channels">
+    <channels :members="members" :channels="channels" @event='showChannels' class ="channels">
 
     </channels>
 
