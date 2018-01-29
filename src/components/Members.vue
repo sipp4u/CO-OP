@@ -4,11 +4,13 @@
 
     <div v-for="m in members">
       <p v-if="m.fullname == undefined">Sorry, there is no friends here !</p>
-      <div class="inline" v-else>
-              <p>{{m.fullname}}</p>
-              <p v-if="verifMembers(m._id)"></p>
-              <p v-else><img v-on:click="exclude(m)" class="imgDelete" src="../images/logo_delete.png"></img></p>
-      </div>
+       <div v-if="verifMembers(m._id)" class="button">
+         <p>{{m.fullname}}</p>
+       </div>
+       <div v-else class="inline">
+               <p>{{m.fullname}}</p>
+               <p><img v-on:click="exclude(m)" class="imgDelete" src="../images/logo_delete.png"></img></p>
+       </div>
 
 
     </div>
@@ -57,4 +59,15 @@
     margin: 2% 1%;
   }
 
+  .button{
+      width : 100%;
+      height : 50px;
+      padding-top : 1%;
+      background-color: #4CAF50; /* Green */
+      border: none;
+      color: white;
+      text-align: center;
+      text-decoration: none;
+      font-size: 16px;
+  }
 </style>

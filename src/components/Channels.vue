@@ -8,7 +8,6 @@
 
             <div class="ChanelItem">
 
-
                 <h4 v-on:click="showChannel(c._id)"> {{c.label}}</h4>
                 <div style="margin: 1% 4%">
                   <img v-on:click="deleteChannel(c)" class="imgDelete" src="../images/logo_delete.png" alt="delete"/>
@@ -93,9 +92,6 @@
               var lastPost =post.lastChild(-1);
               console.log(lastPost)
               lastPost.style.backgroundColor = "blue"
-
-              console.log(response.data)
-
             })
 
           })
@@ -111,7 +107,6 @@
       },
       deletePost(p){
         confApi.delete('channels/'+ p.channel_id +/posts/+ p._id).then((response) =>{
-          console.log(this.response);
           alert('Votre post est supprimer')
         })
       }
