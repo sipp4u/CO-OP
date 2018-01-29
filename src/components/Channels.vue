@@ -2,11 +2,20 @@
   <div>
     <div class="all">
         <div class="menu">
-          <h1>Menu</h1>
-          <div  v-for="c in channels">
-            <!-- Le if ne marche pas -->
-            <p v-if="c == undefined">Sorry, there is no channels here !</p>
-            <p v-on:click="showChannel(c._id)" v-else> {{c.label}} <button v-on:click="deleteChannel(c)"> Delete channel </button></p>
+          <h1>Channels</h1>
+          <p v-if="(Object.keys(channels).length)==0">Sorry, there is no channels here !</p>
+          <div v-for="c in channels">
+
+            <div class="ChanelItem">
+
+
+                <h4 v-on:click="showChannel(c._id)"> {{c.label}}</h4>
+                <div style="margin: 1% 4%">
+                  <img v-on:click="deleteChannel(c)" class="imgDelete" src="../images/logo_delete.png" alt="delete"/>
+                </div>
+
+              </div>
+
           </div>
           <button v-on:click="showModal()">Create Channel</button>
         </div>
@@ -66,7 +75,6 @@
       deleteChannel(channel){
         confApi.delete('channels/'+ channel._id).then((response)=> {
           alert('You just delete ' + channel.label)
-          alert('You fucked up')
           router.go()
         })
       },
@@ -86,6 +94,12 @@
       },
       hideModal(){
         this.isDisplay = false;
+      },
+      deletePost(p){
+        confApi.delete('channels/'+ p.channel_id +/posts/+ p._id).then((response) =>{
+          console.log(this.response);
+          alert('Votre post est supprimer')
+        })
       }
     }
   }
@@ -98,7 +112,7 @@
 
   .menu{
     width : 200px;
-    background-color: lightgrey;
+    background-color:	#b3ffb3;
   }
 
   .channelsChat{
@@ -132,5 +146,25 @@
     top : 0;
     right : 0;
   }
-
+  .ChanelItem{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .imgDelete{
+    width: 40px ;
+    height: 40px;
+    margin: 2% 1%;
+  }
+  button {
+    margin-left: 2px;
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+  }
 </style>

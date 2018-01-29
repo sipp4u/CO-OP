@@ -33,7 +33,7 @@
 <style scoped>
 
   div{
-    background-color: lightgrey;
+    background-color:  #4CAF50;
   }
-  
+
 </style>
