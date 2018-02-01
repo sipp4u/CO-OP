@@ -1,8 +1,25 @@
 # co-op
 
-> we want create an application who looks like slack
+> we want create an application which allows us to create different channels, on different topics, for example !
 
-## Build Setup
+### Requirements:
+- use ECMAScript 5, View does not support IE8 and earlier versions
+- command prompt node
+
+### Features
+
+
+- Sign in
+- Sign up
+- Authentication for a member
+- Show profil
+- Create channel to chat
+- Update channel
+- Post a message
+- Update a post
+- Delete a member
+
+### Build Setup
 
 ``` bash
 # install dependencies
@@ -11,11 +28,13 @@ npm install
 # serve with hot reload at localhost:8080
 npm run dev
 
-# build for production with minification
-npm run build
-
-# build for production and view the bundle analyzer report
-npm run build --report
-```
 
 For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
+
+
+### Groups
+
+- Hugo Sipp
+- Myriam Matmat
+
+### That's it! Now go build something cool.
